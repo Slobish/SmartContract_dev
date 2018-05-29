@@ -1,0 +1,184 @@
+{
+  "contractName": "Picker",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "receiver",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x6080604052348015600f57600080fd5b50607a8061001e6000396000f300608060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063f7260d3e146044575b600080fd5b604a604c565b005b5600a165627a7a723058204992eaa285bbde78708a7f87cacf0629d70c85e5807a43f24a3cbd9a2a9cd9220029",
+  "deployedBytecode": "0x608060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063f7260d3e146044575b600080fd5b604a604c565b005b5600a165627a7a723058204992eaa285bbde78708a7f87cacf0629d70c85e5807a43f24a3cbd9a2a9cd9220029",
+  "sourceMap": "26:79:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;26:79:1;;;;;;;",
+  "deployedSourceMap": "26:79:1:-;;;;;;;;;;;;;;;;;;;;;;;;48:55;;;;;;;:::o",
+  "source": "pragma solidity ^0.4.23;\n\ncontract Picker\n{\n    function receiver() public payable\n    {\n        \n    }\n}",
+  "sourcePath": "/home/fscucchiero/Desktop/contractTesting/firstContract/contracts/Picker.sol",
+  "ast": {
+    "absolutePath": "/home/fscucchiero/Desktop/contractTesting/firstContract/contracts/Picker.sol",
+    "exportedSymbols": {
+      "Picker": [
+        63
+      ]
+    },
+    "id": 64,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 58,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".23"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 63,
+        "linearizedBaseContracts": [
+          63
+        ],
+        "name": "Picker",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 61,
+              "nodeType": "Block",
+              "src": "87:16:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 62,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "receiver",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 59,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "65:2:1"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 60,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "87:0:1"
+            },
+            "scope": 63,
+            "src": "48:55:1",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 64,
+        "src": "26:79:1"
+      }
+    ],
+    "src": "0:105:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/fscucchiero/Desktop/contractTesting/firstContract/contracts/Picker.sol",
+    "exportedSymbols": {
+      "Picker": [
+        63
+      ]
+    },
+    "id": 64,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 58,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".23"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 63,
+        "linearizedBaseContracts": [
+          63
+        ],
+        "name": "Picker",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 61,
+              "nodeType": "Block",
+              "src": "87:16:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 62,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "receiver",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 59,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "65:2:1"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 60,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "87:0:1"
+            },
+            "scope": 63,
+            "src": "48:55:1",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 64,
+        "src": "26:79:1"
+      }
+    ],
+    "src": "0:105:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {
+    "4447": {
+      "events": {},
+      "links": {},
+      "address": "0x345ca3e014aaf5dca488057592ee47305d9b3e10",
+      "transactionHash": "0x6d32c25546f5129381cbe707d8fac8e91f807e5c86163b89b9b3430f00927de1"
+    }
+  },
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-05-29T21:12:05.926Z"
+}
