@@ -4,7 +4,7 @@ var Scoin = artifacts.require("./Scoin.sol");
 module.exports = function(deployer,accounts)
 {
 
-  deployer.deploy(Scoin).then(secondDeploy(scoin));
+  deployer.deploy(Scoin).then(secondDeploy(Scoin));
   
 
   function secondDeploy(scoin)
