@@ -1,4 +1,4 @@
-const Crowdsale = artifacts.require("Crowdsale.sol");
+const Crowdsale = artifacts.require("Crowdexample.sol");
 const Scoin = artifacts.require("Scoin.sol");
 
 contract("Scoin", async (accounts) => {

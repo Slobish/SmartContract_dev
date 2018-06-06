@@ -5,7 +5,7 @@ import "openzeppelin-solidity/contracts/crowdsale/Crowdsale.sol";
 
 contract Crowdexample is Crowdsale 
 {
-
+    Scoin token;
     
     function setParameters(uint256 _rate, address _wallet, Scoin _token) public  
     {

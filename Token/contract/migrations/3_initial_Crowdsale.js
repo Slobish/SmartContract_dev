@@ -1,6 +1,14 @@
-var Crowdsale = artifacts.require("./Crowdsale.sol");
+var Crowdsale = artifacts.require("./Crowdexample.sol");
+var Scoin = artifacts.require("./Scoin.sol");
 
-module.exports = function(deployer)
+module.exports = function(deployer,accounts)
 {
-  deployer.deploy(Crowdsale);
+
+  deployer.deploy(Scoin).then(secondDeploy(scoin));
+  
+
+  function secondDeploy(scoin)
+  {
+    deployer.deploy(Crowdsale,1,accounts[0],scoin.address);
+  }
 };
