@@ -3,44 +3,17 @@ pragma solidity ^0.4.24;
 import "./Scoin.sol";
 import "openzeppelin-solidity/contracts/crowdsale/Crowdsale.sol";
 
-contract Crowdexample is Ownable {
-    using SafeMath for uint256;
-
+contract Crowdexample is Crowdsale
+{
+    
     // The token being sold
     Scoin public token;
-
-    // Address where funds are collected
-    address public wallet;
-
-    // How many token units a buyer gets per wei.
-    // The rate is the conversion between wei and the smallest and indivisible token unit.
-    // So, if you are using a rate of 1 with a DetailedERC20 token with 3 decimals called TOK
-    // 1 wei will give you 1 unit, or 0.001 TOK.
     uint256 public rate=1;
 
-    // Amount of wei raised
-    uint256 public weiRaised;
-
-    /**
-    * Event for token purchase logging
-    * @param purchaser who paid for the tokens
-    * @param beneficiary who got the tokens
-    * @param value weis paid for purchase
-    * @param amount amount of tokens purchased
-    */
-    event TokenPurchase(
-        address indexed purchaser,
-        address indexed beneficiary,
-        uint256 value,
-        uint256 amount
-    );
-
-    /**
-    * @param _rate Number of token units a buyer gets per wei
-    * @param _wallet Address where collected funds will be forwarded to
-    * @param _token Address of the token being sold
-    */
-   
+    constructor () public 
+    {
+        
+    }
     function setParameters(uint256 _rate, address _wallet, Scoin _token) public onlyOwner {
         require(_rate > 0);
         require(_wallet != address(0));
