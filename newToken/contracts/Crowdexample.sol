@@ -16,7 +16,7 @@ contract Crowdexample is Ownable {
     // The rate is the conversion between wei and the smallest and indivisible token unit.
     // So, if you are using a rate of 1 with a DetailedERC20 token with 3 decimals called TOK
     // 1 wei will give you 1 unit, or 0.001 TOK.
-    uint256 public rate;
+    uint256 public rate=1;
 
     // Amount of wei raised
     uint256 public weiRaised;
