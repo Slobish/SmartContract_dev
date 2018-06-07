@@ -3,7 +3,7 @@ pragma solidity ^0.4.24;
 import "./Scoin.sol";
 import "openzeppelin-solidity/contracts/crowdsale/Crowdsale.sol";
 
-contract Crowdexample {
+contract Crowdexample is Ownable {
     using SafeMath for uint256;
 
     // The token being sold
@@ -40,7 +40,8 @@ contract Crowdexample {
     * @param _wallet Address where collected funds will be forwarded to
     * @param _token Address of the token being sold
     */
-    constructor(uint256 _rate, address _wallet, Scoin _token) public {
+   
+    function setParameters(uint256 _rate, address _wallet, Scoin _token) public onlyOwner {
         require(_rate > 0);
         require(_wallet != address(0));
         require(_token != address(0));

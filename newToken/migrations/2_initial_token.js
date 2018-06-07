@@ -1,12 +1,6 @@
-var Crowdexample = artifacts.require("Crowdexample.sol");
-var Scoin = artifacts.require("Scoin.sol");
+var Scoin = artifacts.require("./Scoin.sol");
 
-module.exports = function(deployer,network,accounts)
+module.exports = function(deployer)
 {
-  
-  deployer.deploy(Scoin).then(function(e) 
-  {
-    deployer.deploy(Crowdexample,1,accounts[0],Scoin.address);
-  });
-
+  deployer.deploy(Scoin);
 };

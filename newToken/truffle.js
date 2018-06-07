@@ -1,7 +1,7 @@
-var HDWalletProvider = require("truffle-hdwallet-provider");
+//var HDWalletProvider = require("truffle-hdwallet-provider");
 
 module.exports = {
- 
+ /*
   networks: {
     development: {
       host: "localhost",
@@ -15,7 +15,7 @@ module.exports = {
         network_id: 3,
         gas: 4500000
     },
-    */
+   
   }
-  
+  */  
 };
