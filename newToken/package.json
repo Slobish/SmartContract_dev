@@ -12,8 +12,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": 
-  {
+  "dependencies": {
     "ethereumjs-testrpc": "6.0.3",
     "ganache-cli": "6.1.0",
     "openzeppelin-solidity": "1.10.0",
