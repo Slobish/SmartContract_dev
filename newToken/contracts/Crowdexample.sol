@@ -10,7 +10,8 @@ contract Crowdexample is Crowdsale {
  
     uint256 public rate=1;
    
-    constructor (uint256 _rate,address _wallet,Scoin _token)  Crowdsale(_rate,_wallet,_token) public {
+    constructor (uint256 _rate,address _wallet, Scoin _token)  Crowdsale(_rate,_wallet,_token) public 
+    {
         require(_rate > 0);
         require(_wallet != address(0));
         require(_token != address(0));
