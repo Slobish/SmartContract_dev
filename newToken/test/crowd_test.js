@@ -18,7 +18,7 @@ contract("Scoin", async (accounts) => {
   it("Setting parameters to crowdsale", async () => {
     var scoin = await Scoin.deployed();
     var crowd = await Crowdsale.deployed();
-    crowd.setParameters(1,web3.eth.accounts[0],scoin.address);
+    
     assert.equal(await crowd.rate(),1);
     assert.equal(await crowd.wallet(),web3.eth.accounts[0]);
     assert.equal(await crowd.token(),scoin.address);
@@ -43,7 +43,7 @@ contract("Scoin", async (accounts) => {
     var amount=100;
     var confirm = false;
 
-    await crowd.setParameters(1,wallet,token);
+    
     await scoin.setAllowed(crowd.address);
 
     var initialBalance_buyer= await web3.eth.getBalance(buyer);
@@ -69,7 +69,7 @@ contract("Scoin", async (accounts) => {
     var amount=10000;
     var confirm = false;
 
-    await crowd.setParameters(1,wallet,token);
+    
     await scoin.setAllowed(crowd.address);
     await crowd.buyTokens(beneficiary,{from:buyer,value:amount}); // tokens has arrived to beneficiary
 
@@ -100,7 +100,7 @@ contract("Scoin", async (accounts) => {
     var amount=10000;
     var confirm = false;
     
-    await crowd.setParameters(1,wallet,token);
+    
     await scoin.setAllowed(crowd.address);
     await scoin.finishMinting();
     

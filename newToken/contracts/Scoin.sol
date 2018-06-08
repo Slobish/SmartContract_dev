@@ -8,7 +8,6 @@ contract Scoin is MintableToken
 {
     address public allowed;
 
-
     modifier hasMintPermission() {
         require(msg.sender == owner || msg.sender == allowed);
         _;
