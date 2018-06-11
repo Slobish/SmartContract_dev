@@ -43,21 +43,22 @@ contract("Scoin", async (accounts) => {
     var amount=100;
     var confirmer = false;   
 
-    var initialBalance_buyer= await web3.eth.getBalance(buyer);
-    var initialBalance_wallet= await web3.eth.getBalance(wallet);
+    var initialBalance_buyer= new web3.BigNumber( await web3.eth.getBalance(buyer) );
+    var initialBalance_wallet= new web3.BigNumber( await web3.eth.getBalance(wallet) );
  
     var receipt = await crowd.buyTokens(beneficiary,{from:buyer,value:amount});
     var tx = web3.eth.getTransaction(receipt.tx);
     var estimatedGas = new web3.BigNumber(receipt.receipt.gasUsed);
     estimatedGas = estimatedGas.mul(new web3.BigNumber(tx.gasPrice));
 
-    var finalBalance_wallet= await web3.eth.getBalance(wallet);
-    var currentBalance=Number(await web3.eth.getBalance(buyer));
-    var expectedBalance = Number(initialBalance_buyer)-Number(amount)-Number(estimatedGas);
+    var finalBalance_wallet= new web3.BigNumber( await web3.eth.getBalance(wallet));
+    var currentBalance= new web3.BigNumber( await web3.eth.getBalance(buyer) );
+    var expectedBalance = new web3.BigNumber( Number(initialBalance_buyer)-Number(amount)-Number(estimatedGas) );
  
-    if ( currentBalance == expectedBalance )  confirmer = true; 
-    assert.equal( Number(finalBalance_wallet),Number(initialBalance_wallet)+Number(amount));
-    assert.equal(confirmer,true);
+    
+    if ( Number(currentBalance)== Number(expectedBalance) )  confirmer = true; 
+    assert.equal( Number(finalBalance_wallet),Number( initialBalance_wallet.add(amount) ));
+    assert.equal(confirmer,true,"Current balance is not equal to the expected one");
 
     });
   it("Transaction of tokens should be reflected on token's network", async () => {
@@ -74,16 +75,17 @@ contract("Scoin", async (accounts) => {
    
     await crowd.buyTokens(beneficiary,{from:buyer,value:amount}); // tokens has arrived to beneficiary
 
-    var initialBalance_beneficiary= await scoin.balanceOf(beneficiary);
-    var initialBalance_wallet= await scoin.balanceOf(wallet);
+    var initialBalance_beneficiary= new web3.BigNumber( await scoin.balanceOf(beneficiary) );
+    var initialBalance_wallet= new web3.BigNumber( await scoin.balanceOf(wallet) );
 
     await scoin.transfer(wallet,99*initialBalance_beneficiary/100,{from:beneficiary}); // 99% of tokens goes to wallet
 
-    var finalBalance_wallet= await scoin.balanceOf(wallet); 
-    var finalBalance_beneficiary= await scoin.balanceOf(beneficiary);
+    var finalBalance_wallet= new web3.BigNumber( await scoin.balanceOf(wallet) ); 
+    var finalBalance_beneficiary= new web3.BigNumber( await scoin.balanceOf(beneficiary) );
 
-    if ( Number(finalBalance_beneficiary) <= Number(finalBalance_beneficiary)-Number(99*initialBalance_beneficiary/100)) confirmer = true;
-    assert.equal( Number(finalBalance_wallet),Number(initialBalance_wallet)+Number(99*initialBalance_beneficiary/100));
+    if ( finalBalance_beneficiary.eq(initialBalance_beneficiary.sub( (initialBalance_beneficiary.mul(99)).div(100) ))) confirmer = true;
+
+    assert.equal(Number(finalBalance_wallet),Number (initialBalance_wallet.add((initialBalance_beneficiary.mul(99).div(100)))) );
     assert.equal(confirmer,true);
    });
    
