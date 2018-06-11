@@ -32,6 +32,7 @@ contract("Scoin", async (accounts) => {
     });
 
   it("Buying tokens should be reflected on ethereum's network", async () => {
+
     var scoin = await Scoin.deployed();
     var crowd = await Crowdsale.deployed();   
     
@@ -51,9 +52,9 @@ contract("Scoin", async (accounts) => {
     var estimatedGas = new web3.BigNumber(receipt.receipt.gasUsed);
     estimatedGas = estimatedGas.mul(new web3.BigNumber(tx.gasPrice));
 
-    var finalBalance_wallet= new web3.BigNumber( await web3.eth.getBalance(wallet));
-    var currentBalance= new web3.BigNumber( await web3.eth.getBalance(buyer) );
-    var expectedBalance = new web3.BigNumber( Number(initialBalance_buyer)-Number(amount)-Number(estimatedGas) );
+    var finalBalance_wallet=  await web3.eth.getBalance(wallet);
+    var currentBalance= await web3.eth.getBalance(buyer) ;
+    var expectedBalance = new web3.BigNumber( initialBalance_buyer.sub(amount).sub(estimatedGas) );
  
     
     if ( Number(currentBalance)== Number(expectedBalance) )  confirmer = true; 
@@ -61,7 +62,9 @@ contract("Scoin", async (accounts) => {
     assert.equal(confirmer,true,"Current balance is not equal to the expected one");
 
     });
+
   it("Transaction of tokens should be reflected on token's network", async () => {
+
     var scoin = await Scoin.deployed();
     var crowd = await Crowdsale.deployed();   
     
@@ -86,6 +89,7 @@ contract("Scoin", async (accounts) => {
     if ( finalBalance_beneficiary.eq(initialBalance_beneficiary.sub( (initialBalance_beneficiary.mul(99)).div(100) ))) confirmer = true;
 
     assert.equal(Number(finalBalance_wallet),Number (initialBalance_wallet.add((initialBalance_beneficiary.mul(99).div(100)))) );
+
     assert.equal(confirmer,true);
    });
    
