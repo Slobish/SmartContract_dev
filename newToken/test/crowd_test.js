@@ -81,7 +81,7 @@ contract("Scoin", async (accounts) => {
     var initialBalance_beneficiary= new web3.BigNumber( await scoin.balanceOf(beneficiary) );
     var initialBalance_wallet= new web3.BigNumber( await scoin.balanceOf(wallet) );
 
-    await scoin.transfer(wallet,99*initialBalance_beneficiary/100,{from:beneficiary}); // 99% of tokens goes to wallet
+    await scoin.transfer(wallet,initialBalance_beneficiary.mul(99).div(100),{from:beneficiary}); // 99% of tokens goes to wallet
 
     var finalBalance_wallet= new web3.BigNumber( await scoin.balanceOf(wallet) ); 
     var finalBalance_beneficiary= new web3.BigNumber( await scoin.balanceOf(beneficiary) );
