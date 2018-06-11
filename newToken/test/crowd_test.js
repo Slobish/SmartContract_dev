@@ -91,6 +91,7 @@ contract("Scoin", async (accounts) => {
     assert.equal(Number(finalBalance_wallet),Number (initialBalance_wallet.add((initialBalance_beneficiary.mul(99).div(100)))) );
 
     assert.equal(confirmer,true);
+    
    });
    
    it("Should not be available to mint if minting has finished",async function ()
