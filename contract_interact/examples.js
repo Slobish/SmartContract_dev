@@ -6,12 +6,13 @@ var hdkey = require('ethereumjs-wallet/hdkey')
 
 var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"))
 // ETH
+/*
 const ethscan = require('etherscan-api').init('YourApiKey','ropsten'); // It is necesary, i think that you can put your APiKey if you register. 
 const EthTx = require("ethereumjs-tx")
 var bip39 = require('bip39');
 const Buffer = require("buffer").Buffer;
 //  browserify -r bip39 -r r2 -r bitcoinjs-lib -r bigi -r bip39 -r web3 -r ethereumjs-tx -r etherscan-api -r ripple-keypairs -r ripple-bip32 -r ethereumjs-wallet -r stellar-sdk -r buffer -r ethereumjs-util -r ethereumjs-wallet/hdkey  > bundle.js
-
+*/
 //
 //
 //             ETHEREUM ROPSTEN TESTNET
@@ -31,9 +32,9 @@ function getAddressETH(privateKey){
 	var privateKey = new Buffer(privateKey,'hex')
 	let public = util.privateToPublic(privateKey)
 	console.log(util.publicToAddress(public).toString('hex'))
-	document.getElementById('keyPair').value = "Private Key: " + privateKey.toString("hex") + "\n" + "Public Key: " + public.toString("hex") + "\n" + "Address: " + util.publicToAddress(public).toString('hex') 
+	//document.getElementById('keyPair').value = "Private Key: " + privateKey.toString("hex") + "\n" + "Public Key: " + public.toString("hex") + "\n" + "Address: " + util.publicToAddress(public).toString('hex') 
 }
-getAddressETH("600cb5ad36b87e88ebb0d4706fe1e8d28dbeb875c64628e34368d99d3833d78b")
+getAddressETH("5f00744254d7963a4b50dd4abd867b4838ddeb3255b24327065fc4844a9eeaff")
 /**
  * Get Balance from an Address.
  * @param {string} addr - Balance of address. 
