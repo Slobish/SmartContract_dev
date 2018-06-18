@@ -22,6 +22,16 @@ except Exception as e:
     sys.exit("ERROR CONNECTING TO NODE: "+ e)
 
 try:
-    web3.eth.sendTransaction({'to': accounts[1], 'from': accounts[0], 'value': 1})
+    options= 
+    {
+        "nonce":web3.eth.getTransactionCount(accounts[0]),
+        "to":accounts[1],
+        "from": accounts[0],
+        "value": 1,
+        "gasPrice":web3.eth.gasPrice,
+        "gasLimit": ,
+        
+    }
+    web3.eth.sendTransaction(options)
 except Exception as e:    
     sys.exit("ERROR SENDING TRANSACTION: "+e)

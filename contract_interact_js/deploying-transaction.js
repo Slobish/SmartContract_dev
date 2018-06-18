@@ -1,4 +1,4 @@
-//deploys a contract throught transaction
+//this script deploys a contract throught transaction
 const Web3 = require('web3');
 const solc = require('solc');
 const fs   = require('fs');
@@ -13,9 +13,6 @@ var bytecode = compiledInstance.contracts[':'+contractName].bytecode;
 
 var address1 = "0x640E89e5F495f47415Eb27e1Ac05ae34E009dC2c";
 var privateKey1 = new Buffer.from("5f00744254d7963a4b50dd4abd867b4838ddeb32d6b24327065fc4484a9eeaff", "hex");
-
-var address2 = "0x47014cae621dcb39c448c381e9e1a5603182a9e9";
-var privateKey2 = new Buffer.from("9216e258d39955a2eb8d19ff67b260827852891454cbb9e0c012620c6ed803f9", "hex");
 
 var receipt;
 
@@ -36,7 +33,7 @@ gp.then((gasPriceHex) => {
                 console.log("Gas Price : " + parseInt(gasPriceHex));
                 console.log("Gas Limit : " + parseInt(gasLimitHex));
                 
-                var rawTx = {
+                var rawTx = { //note that no address is provided as "to"
                     nonce: nonce,
                     gasPrice: gasPriceHex,
                     gasLimit: gasLimitHex,
