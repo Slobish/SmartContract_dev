@@ -20,10 +20,9 @@ try:
         raise Exception  ("Couldn't connect")
 except Exception as e:
     sys.exit("ERROR CONNECTING TO NODE: "+ e)
-
+web3.eth.
 try:
-    options= 
-    {
+    options={
         "nonce":web3.eth.getTransactionCount(accounts[0]),
         "to":accounts[1],
         "from": accounts[0],
