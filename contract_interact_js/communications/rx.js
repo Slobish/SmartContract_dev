@@ -9,7 +9,7 @@ if(process.argv[2] == "manu")
 }
 else if(process.argv[2]=="fran")
 {
-    the_address="0x640E89e5F495f47415Eb27e1Ac05ae34E009dC2c";
+    the_address="0xAcad03778f6D0c871D1717f6CAF74330Fd371f8f";
 }
 
 
@@ -17,11 +17,12 @@ else if(process.argv[2]=="fran")
 async function getTransactionList(addr){
     
     let _url = "http://api-ropsten.etherscan.io/api?module=account&action=txlist&address="+addr+"&startblock=0&endblock=99999999&sort=asc&apikey=YourApiKeyToken";
-    try{     
-     let request_answer = await r2(_url).text;
-     return JSON.parse(request_answer).result
+    try{   
+        let request_answer = await r2(_url).text;
+        console.log("arrived")
+        return JSON.parse(request_answer).result
     }catch (e){         
-     return request_answer;
+        return request_answer;
     }
  }
 
