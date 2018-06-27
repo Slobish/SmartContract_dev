@@ -1,11 +1,15 @@
 var express = require('express');
-var ejs = require('ejs')
+var morgan = require('morgan');
+var ejs = require('ejs');
 var app = express();
+var routes = require('./frontend/routes/routes.js');
+
+app.set('appName','blockChat');         // setting name
+app.set('views',__dirname+'/frontend')  // htmls
+app.set('view engine','ejs');           // engine to show htmls
+
+app.use(morgan('short'));               
+app.use(routes);
 
 
-app.set('appName','blockChat');
-app.set('views',__dirname+'/frontend')
-app.set('view engine','ejs');
-
-app.get('/', (req, res) => res.render(__dirname+'/frontend/index.ejs'));
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(3000, () => {console.log("Server ON")});

@@ -1,8 +1,8 @@
 var Web3 = require('web3');
 var Tx = require('ethereumjs-tx');
 const r2 = require('r2')
-
-web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/VDPJVXBhW7ruxTPjDagg'));
+web3 = new Web3(new Web3.providers.HttpProvider('http://pc9:8545'));
+//web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/VDPJVXBhW7ruxTPjDagg'));
 if(process.argv[2] == "manu")
 {
     the_address="0x031E5c3f81B599A1fA39d7CF2c894DDE59eaB968";
