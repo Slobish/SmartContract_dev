@@ -7,20 +7,19 @@
     </head>    
     <body>
         
+        <h1 id="asd">Loading your code...</h1>
+        
         <script>
-            function getCode()
-            {
                 code="";
                 for(i=0;i<10;i++)
                 {
                     code=code+Math.floor(Math.random()*Math.floor(9));
                 }
                 console.log(code);
-                return code;
-            } 
+                document.getElementById("asd").value=code;
         </script>
         
-        <h1 value="getCode()" id="asd"> asd</h1>
+        
 
     </body>
 </html>

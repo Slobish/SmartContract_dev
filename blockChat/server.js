@@ -11,5 +11,4 @@ app.set('view engine','ejs');           // engine to show htmls
 app.use(morgan('short'));               
 app.use(routes);
 
-
 app.listen(3000, () => {console.log("Server ON")});

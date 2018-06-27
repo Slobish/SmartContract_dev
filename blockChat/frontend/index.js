@@ -1,4 +1,4 @@
-function changeStyle() 
+function changeStyle()
 {
     document.getElementById("addressField").value = "";
 }
