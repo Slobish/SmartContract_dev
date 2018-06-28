@@ -1,17 +1,22 @@
 body
 {
-    background-color: aquamarine;    
+    background-color: rgb(78, 78, 78);   
 }
 
 .menu
 {
     width: 700px;
     height:300px;
-    border: 5px solid gray;
+    border: 5px solid rgb(38, 153, 173);
     text-align: center;
     position: absolute;
     top: 30%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%)
+}
+
+#code
+{
+    /*text-align:left;*/
 }
