@@ -3,20 +3,25 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <script src="index.js"></script>
+        <link rel="stylesheet" href="index.css"> 
         <title>BlockChat</title>        
     </head>    
-
+    
     <body>
-        <script src="index.js"></script>
+        
+        <div class="menu">
+            <form id="form" action="feeGet">
+                <br>Address:<br>
+                <input type="text" size ="42" value="0x345873A24BE1..." style="color:#B1B1B1; font-style:italic;" onclick="changeStyle1()" name="addressField" id="addressField" >
+                <br><br>
+                Message:<br>
+                    <textarea rows="6" cols="50" style="color:#B1B1B1; font-style:italic;" onclick="changeStyle2()" name="textField" form="form" id="textField">Insert your message here... 
+                    </textarea>
+                <br><br>
+                <input type="submit" value="Send">
+            </form> 
+        </div>
 
-        <form id="form" action="feeGet">
-            <br>Address:<br>
-            <input type="text" size ="42" value="0x345873A24BE1..." style="color:#B1B1B1; font-style:italic;" onclick="changeStyle()" name="addr" id="addressField" >
-            <br><br>
-            Message:<br>
-            <textarea rows="6" cols="50" value="Insert your message here..." style="color:#B1B1B1; font-style:italic;" name="comment" form="form"> </textarea>
-            <br><br>
-            <input type="submit" value="Send">
-        </form> 
     </body>
 </html>
