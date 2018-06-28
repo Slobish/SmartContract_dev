@@ -9,7 +9,15 @@ body
     text-align: center;
     padding:30px;
 }
-
+#submit
+{
+    width: 160px;
+    height: 30px;
+    text-align: center;
+    background-color: rgb(38, 153, 173);
+    letter-spacing: 4px;
+    color:white;    
+}
 .menu
 {   
     width: 700px;

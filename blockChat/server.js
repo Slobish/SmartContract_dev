@@ -1,14 +1,19 @@
 var express = require('express');
 var morgan = require('morgan');
-var ejs = require('ejs');
+
 var app = express();
-var routes = require('./frontend/routes/routes.js');
+var routes = require('./engine/routes/routes.js');
+
+app.use(express.static("engine")); 
+app.use(morgan('short'));  
 
 app.set('appName','blockChat');         // setting name
-app.set('views',__dirname+'/frontend')  // htmls
-app.set('view engine','ejs');           // engine to show htmls
+      
+//app.use(routes);
 
-app.use(morgan('short'));               
-app.use(routes);
+app.get('/', (req, res) => res.sendFile(__dirname+'/engine/index.html'));
+app.get('/feeGet', (req, res) => res.sendFile(__dirname+'/engine/feeGet.html'));
 
-app.listen(3000, () => {console.log("Server ON")});
+
+
+var server = app.listen(3000, () => {console.log("Server ON || PORT = "+server.address().port)});

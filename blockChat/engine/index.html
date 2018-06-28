@@ -3,27 +3,27 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <script src="index.js"></script>
-        <link rel="stylesheet" href="index.css"> 
+        <script src="/backend/index.js"></script>
+        <link rel="stylesheet" href="/css/index.css"> 
         <title>BlockChat</title>        
     </head>    
     
     <body>        
-    
+
         <div class="logo">
-            <img src="logo.png" width="200" height="50" >
+            <img src="/img/logo.png" width="200" height="50" alt="logo">
         </div>
 
         <div class="menu">
             <form id="form" action="feeGet">
-                <br>Address:<br>
+                <br>Address:<br><br>
                 <input type="text" size ="42" value="0x345873A24BE1..." style="color:#B1B1B1; font-style:italic;" onclick="changeStyle1()" name="addressField" id="addressField" >
                 <br><br>
-                Message:<br>
+                Message:<br><br>
                     <textarea rows="6" cols="50" style="color:#B1B1B1; font-style:italic;" onclick="changeStyle2()" name="textField" form="form" id="textField">Insert your message here... 
                     </textarea>
                 <br><br>
-                <input type="submit" value="Send">
+                <input type="submit" value="Send" id="submit">
             </form> 
         </div>
 
