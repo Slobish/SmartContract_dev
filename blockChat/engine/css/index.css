@@ -18,6 +18,16 @@ body
     letter-spacing: 4px;
     color:white;    
 }
+#addressField
+{
+    color:white;
+    background-color: darkgrey;  
+}
+#textField
+{
+    background-color: darkgrey;
+    
+}
 .menu
 {   
     width: 700px;
