@@ -2,80 +2,84 @@ pragma solidity ^0.4.23;
 
 import "../node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "../node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol";
+import "../node_modules/solidity-stringutils/src/strings.sol";
 
 contract MillionPixel is Ownable {
     
     using SafeMath for uint256;
+    using strings for *;
+    
     address internal owner;
-    uint256 public centralPixPrice;
-    address[][] pixelOwner;
+    uint constant PixPrice=2000000000000000; //0.002 ether
+    uint constant minSquare=10; // 10x10 pixel squares represent minimun advertisement size
+    uint constant squareDensity=100; // 100 pixels per square as 10x10 == 100
+     
+    struct AdvertisementModel
+    {
+        address owner;
+        uint256 x;
+        uint256 y;
+        uint256 width;
+        uint256 height;
+        string name;
+        string image;
+        string text;
+    }
+
+    AdvertisementModel[] public Advertises;
+    
+    bool[100][100] public grid;
+    
+    mapping (bytes32=>address) pixelOwner;
 
 
-    constructor(uint256 price) public {
-        centralPixPrice = price;
+    constructor() public {
+        
         owner = msg.sender;
     }
 
-    function setPixPrice(uint price) public onlyOwner
+    function buySquare(uint x, uint y, uint width, uint height) public payable returns (uint)
     {
-        centralPixPrice = price;
-    }
-    function pixPrice(int256 x,int256 y) internal view returns (uint256)
-    {
-        uint256 X = 0;
-        uint256 Y = 0;
+        require(msg.value >= getPrice(width,height));
 
-        if(x<=0) X = uint256(0-x);
-        if(y<=0) Y = uint256(0-x);
-        return ( centralPixPrice / (1+X.mul(X)+X.mul(X)) );
+        for(uint i = 0;i<width;i++) 
+        {
+            for(uint j = 0;j<height;j++) 
+            {
+                if (grid[x+i][y+j]) 
+                {
+                    // Already taken, undo.
+                    revert();
+                }
+                grid[x+i][y+j] = true;
+            }
+        }   
+        AdvertisementModel memory ad = AdvertisementModel(msg.sender,x,y,width,height,"","","");
+        uint advertiseID = Advertises.push(ad)-1;
+        return advertiseID;
     }
     
-
-    function getPrice(int256 x,int256 y,int256 sx,int256 sy) internal view returns(uint256)
+    function modifySquare(uint advertiseID, string text, string image, string name) public
     {
-        int256 startY = 0;
-        int256 startX = 0;
-        int256 finalY = 0;
-        int256 finalX = 0;
-        uint256 finalPrice = 0;
+        AdvertisementModel storage ad = Advertises[advertiseID];
+        require(msg.sender == ad.owner);
+        ad.text = text;
+        ad.image = image;
+        ad.name = name;      
+    }   
 
-        if(sx>x)
-        {
-            startX = x;
-            finalX = sx;
-        }
-        else 
-        {
-            startX = sx;
-            finalX = x;
-        }
-        if(sy>y)
-        {
-            startY = y;
-            finalY = sy;
-        }
-        else
-        {
-            startY = sy;
-            finalY = y;
-        } 
-        for(int256 currentY = startY;currentY<finalY;currentY++)
-        {
-            for(int256 currentX = startX;currentX<finalX;currentX++)
-            {
-                finalPrice = finalPrice.add(pixPrice(currentX,currentY));
-            }
-        }
-        return finalPrice;            
+    // values represented by squares so as given sx=10 means 100 pixels width
+    function getPrice(uint sx,uint sy) public view returns(uint256)
+    {        
+        return sx*sy*squareDensity*PixPrice;            
     }
-
-
+    
     function withdraw() public onlyOwner
     {
         owner.transfer(this.balance);
     }
-
-
-
-    
+    function donate() public payable returns(string)
+    {
+        return "Thank you";
+    }    
 }
