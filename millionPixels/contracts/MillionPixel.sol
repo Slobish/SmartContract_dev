@@ -10,7 +10,7 @@ contract MillionPixel is Ownable {
     using strings for *;
     
     address internal owner;
-    uint constant PixPrice=2000000000000000; //0.002 ether
+    uint constant pixPrice=2000000000000000; //0.002 ether
     uint constant minSquare=10; // 10x10 pixel squares represent minimun advertisement size
     uint constant squareDensity=100; // 100 pixels per square as 10x10 == 100
      
@@ -69,9 +69,9 @@ contract MillionPixel is Ownable {
     }   
 
     // values represented by squares so as given sx=10 means 100 pixels width
-    function getPrice(uint sx,uint sy) public view returns(uint256)
+    function getPrice(uint sx,uint sy) public pure returns(uint256)
     {        
-        return sx*sy*squareDensity*PixPrice;            
+        return sx*sy*squareDensity*pixPrice;            
     }
     
     function withdraw() public onlyOwner
