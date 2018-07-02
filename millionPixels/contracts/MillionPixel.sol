@@ -13,7 +13,8 @@ contract MillionPixel is Ownable {
     uint constant pixPrice=2000000000000000; //0.002 ether
     uint constant minSquare=10; // 10x10 pixel squares represent minimun advertisement size
     uint constant squareDensity=100; // 100 pixels per square as 10x10 == 100
-     
+
+    mapping (address=>uint256) public contributors;  
     struct AdvertisementModel
     {
         address owner;
@@ -80,6 +81,7 @@ contract MillionPixel is Ownable {
     }
     function donate() public payable returns(string)
     {
+        contributors[msg.sender] = msg.value;
         return "Thank you";
     }    
 }
