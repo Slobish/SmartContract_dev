@@ -7,9 +7,8 @@ import "../node_modules/solidity-stringutils/src/strings.sol";
 contract MillionPixel is Ownable {
     
     using SafeMath for uint256;
-    using strings for *;
-
-    event Purchase (uint advertiseID);
+    
+    event Purchase(uint advertiseID);
     
     mapping (address=>uint256) public contributors;
     mapping (uint256=>bool) grid;    
@@ -38,7 +37,6 @@ contract MillionPixel is Ownable {
         
         owner = msg.sender;
     }
-
     
     function buySquare(uint128 x, uint128 y, uint width, uint height) public payable returns (uint256)
     {
@@ -62,7 +60,7 @@ contract MillionPixel is Ownable {
 
         AdvertisementModel memory ad = AdvertisementModel(msg.sender,x,y,width,height,"","","");
         Advertises.push(ad);
-        uint256 advertiseID = Advertises.length;
+        uint256 advertiseID = Advertises.length-1;
 
         emit Purchase(advertiseID);
         return advertiseID;
@@ -87,6 +85,7 @@ contract MillionPixel is Ownable {
     {
         owner.transfer(this.balance);
     }
+
     function donate() public payable returns(string)
     {
         contributors[msg.sender] = msg.value;
