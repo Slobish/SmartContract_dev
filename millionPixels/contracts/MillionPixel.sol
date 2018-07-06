@@ -11,14 +11,14 @@ contract MillionPixel is Ownable {
     event Purchase(uint advertiseID);
     
     mapping (address=>uint256) public contributors;
-    mapping (uint256=>bool) grid;    
+    mapping (int256=>bool) grid;    
     mapping (bytes32=>address) pixelOwner;
 
     struct AdvertisementModel
     {
         address owner;
-        uint256 x;
-        uint256 y;
+        int256 x;
+        int256 y;
         uint256 width;
         uint256 height;
         string name;
@@ -28,8 +28,8 @@ contract MillionPixel is Ownable {
 
     AdvertisementModel[] public Advertises;
 
-    address internal owner;
-    uint constant pixPrice=2000000000000000; //0.002 ether
+    address internal owner;       
+    uint constant centralPixPrice=2000000000000000000; //2 ether
     uint constant minSquare=10; // 10x10 pixel squares represent minimun advertisement size
     uint constant squareDensity=100; // 100 pixels per square as 10x10 == 100
 
@@ -38,20 +38,19 @@ contract MillionPixel is Ownable {
         owner = msg.sender;
     }
     
-    function buySquare(uint128 x, uint128 y, uint width, uint height) public payable returns (uint256)
+    function buySquare(int128 x, int128 y, uint width, uint height) public payable returns (uint256)
     {
-        uint256 ID = x;
+        int256 ID = x;
         ID = (ID<<128) | y;
         
-        require(msg.value >= getPrice(width,height));
+        require(msg.value >= getPrice(x,y,width,height));
 
         for(uint i = 0;i<width;i++) 
         {
             for(uint j = 0;j<height;j++) 
             {
-                if (grid[ID]) 
+                if (grid[ID])
                 {
-                    // Already taken, undo.
                     revert();
                 }
                 grid[ID] = true;
@@ -74,11 +73,28 @@ contract MillionPixel is Ownable {
         ad.image = image;
         ad.name = name;      
     }   
-    
+    function changeOwner(uint advertiseID,address newOwner) public 
+    {   
+        AdvertisementModel storage ad = Advertises[advertiseID];
+        require(msg.sender == ad.owner);
+        ad.owner = newOwner;
+    }
     // values represented by squares so as given sx=10 means 100 pixels width
-    function getPrice(uint sx,uint sy) internal pure returns(uint256)
+    function tilePrice(int128 x,int128 y) public pure returns(uint256)
+    {
+        return centralPixPrice/(1+ uint(x)*uint(x) + uint(y)*uint(y) );
+    }
+    function getPrice(int128 x,int128 y,uint width,uint height) public pure returns(uint256)
     {        
-        return sx*sy*squareDensity*pixPrice;            
+        uint256 finalPrice = 0;
+        for(int i = y;i<y+int(height);i++)
+        {
+            for(int j = x;j<x+int(width);j++)
+            {
+                finalPrice = finalPrice + ( tilePrice(x,y));
+            }
+        }
+        return finalPrice;            
     }
     
     function withdraw() public onlyOwner

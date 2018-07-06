@@ -1,0 +1,19 @@
+{
+  "name": "millionpixels",
+  "version": "1.0.0",
+  "description": "",
+  "main": "code.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "openzeppelin-solidity": "^1.10.0",
+    "pngjs": "^3.3.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "truffle test"
+  },
+  "author": "",
+  "license": "ISC"
+}

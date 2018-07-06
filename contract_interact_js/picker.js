@@ -1,16 +1,31 @@
 var Web3 = require('web3');
-var Tx = require('ethereumjs-tx');
-
+var fs = require('fs');
 web3 = new Web3(new Web3.providers.HttpProvider('http://pc9:8545'));
-setInterval(function(){
-    acc=web3.eth.accounts.create()
-    web3.eth.getBalance(acc.address).then(analize,50).catch(console.log)
-})
-var analize = function getter (e)
+while(true)
 {
-    value= Number(e);
-    if(value>0)
+    try
     {
-        console.log(acc.address+" has: "+value)
+        acc=web3.eth.accounts.create();
+        account=acc.address;
+        pw =acc.privateKey;
+        //console.log(acc + " has" +" balance");
+        web3.eth.getBalance(account)
+        .then((e)=>
+        {
+            var txt = "private-key: "+pw+" has: "+e
+            if(e!=0) console.log(txt);
+        })
+
     }
+    catch(e)
+    {
+
+    }
+
 }
+
+    
+    
+
+
+

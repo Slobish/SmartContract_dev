@@ -34,7 +34,4 @@ event.watch(function(error, result){ //This is where events can trigger changes 
 if (!error)
     console.log(result);
 });
-return contractInstance
-  
-
-  
+return contractInstance;

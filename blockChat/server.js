@@ -11,7 +11,7 @@ app.set('appName','blockChat');         // setting name
       
 //app.use(routes);
 
-app.get('/', (req, res) => res.sendFile(__dirname+'/engine/index.html'));
+app.get('/', (req, res) => res.sendFile(__dirname+'/engine/Connegic.html'));
 
 app.post('/feeGet', function(req, res) {
     res.sendFile(__dirname+'/engine/feeGet.html');
