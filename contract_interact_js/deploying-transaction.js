@@ -5,11 +5,14 @@ const fs   = require('fs');
 const Tx = require('ethereumjs-tx');
 web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/VDPJVXBhW7ruxTPjDagg'));
 
-var fileName ="./"+"contract.sol";
-var contractName="sayer";
+var fileName ="./"+"test.sol";
+var contractName="test";
 var compiledInstance=solc.compile(fs.readFileSync(fileName).toString());
-var contractAbi = compiledInstance.contracts[':'+contractName].interface;
+var contractAbi = JSON.parse(compiledInstance.contracts[':'+contractName].interface);
 var bytecode = compiledInstance.contracts[':'+contractName].bytecode;
+
+var contractModel= web3.eth.contract(contractAbi);
+var instance = contractModel.at("0xb3ced684e72c09b66b1909424d3c99a32ca135ea");
 
 var address1 = "0x640E89e5F495f47415Eb27e1Ac05ae34E009dC2c";
 var privateKey1 = new Buffer.from("5f00744254d7963a4b50dd4abd867b4838ddeb32d6b24327065fc4484a9eeaff", "hex");
