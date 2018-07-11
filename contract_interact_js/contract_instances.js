@@ -8,7 +8,7 @@ web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/VDPJV
 function callByTransaction(abi,at,options)
 {
 
-    var fileName ="./"+"test.sol";
+    var fileName ="./src/"+"test.sol";
     var contractName="test";
     var compiledInstance=solc.compile(fs.readFileSync(fileName).toString());
     var contractAbi = JSON.parse(compiledInstance.contracts[':'+contractName].interface);

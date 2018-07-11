@@ -12,7 +12,7 @@ var contractAbi = JSON.parse(compiledInstance.contracts[':'+contractName].interf
 var bytecode = compiledInstance.contracts[':'+contractName].bytecode;
 
 var contractModel= web3.eth.contract(contractAbi);
-var instance = contractModel.at("0xb3ced684e72c09b66b1909424d3c99a32ca135ea");
+var instance = contractModel.at("0xbd1c30a4da8a4a07bb8c19e6e2692f18cbe930f6");
 
 var address1 = "0x640E89e5F495f47415Eb27e1Ac05ae34E009dC2c";
 var privateKey1 = new Buffer.from("5f00744254d7963a4b50dd4abd867b4838ddeb32d6b24327065fc4484a9eeaff", "hex");
@@ -41,13 +41,11 @@ gp.then((gasPriceHex) => {
                     gasPrice: gasPriceHex,
                     gasLimit: gasLimitHex,
                     data: "0x" +bytecode
-                };
-                
+                };                
                 var tx = new Tx(rawTx);
                 tx.sign(privateKey1);
                 var serializedTx = tx.serialize();
                 web3.eth.sendSignedTransaction('0x' + serializedTx.toString('hex')).on('receipt', function(e){e.log;});
-
                 
             });
         });
